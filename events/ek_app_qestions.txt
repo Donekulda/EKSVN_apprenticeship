@@ -1,8 +1,108 @@
 #Elder Kings Apprenticeship Questions
+
 namespace = EKAPPQ
 
 character_event = {
 	id = EKAPPQ.001
-	desc = EVTDESC_EKAPPQ_001
+	desc = EKAPPQ_001_DESC
+	picture = GFX_evt_library
 	
+	
+	is_triggered_only = yes
+	
+	#Education improvment#
+	option = { #Imrpove mage education
+		name = EKAPPQ_001_mage
+		trigger = {
+			AND = {
+				OR = {
+					trait = mage_1
+					trait = mage_2
+					trait = mage_3
+					trait = mage_4
+				}
+			}
+		}
+		set_character_flag = app_in_training
+		set_character_flag = app_train_mage
+		clr_character_flag = app_choosing_master
+	}
+
+	option = { #Failsafe
+		name = EKAPPQ_001_failsafe
+		trigger = {
+		}
+		clr_character_flag = app_choosing_master
+		FROM = { clr_character_flag = app_considering_apprentice_@FROMFROMFROM}
+		add_character_modifier = {
+			name = denied_becoming_apprentice
+			months = 1
+			hidden = yes
+		}
+	}
+}
+
+character_event = {
+    id = EKAPPQ.002
+    desc = EKAPPQ_002_DESC
+    border = GFX_event_normal_frame_intrigue
+    picture = GFX_evt_library
+
+    is_triggered_only = yes
+    
+    option = {
+		name = EKAPPQ_002_OPTION1
+        FROMFROM = { character_event = { id = EKAPPQ.001 days = 6 } }
+		
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					trait = envious
+				}
+			}
+		}
+    }
+	
+    option = {
+		name = EKAPPQ_002_OPTION2
+        FROMFROM = { character_event = { id = EKAPPQ.003 days = 6 } }
+		
+		ai_chance = {
+			factor = 3
+			modifier = {
+				factor = 10
+				OR = {
+					trait = envious
+				}
+			}
+		}
+    }
+}
+
+character_event = {
+	id = EKAPPQ.003
+	desc = EKAPPQ_003_DESC
+	picture = GFX_evt_library
+	
+	is_triggered_only = yes
+
+	option = { #Failsafe
+		name = EKAPPQ_003_shame
+		trigger = {
+		}
+		clr_character_flag = app_choosing_master
+		FROM = { clr_character_flag = app_considering_apprentice_@FROMFROMFROM}
+		add_character_modifier = {
+			name = denied_becoming_apprentice
+			months = 1
+			hidden = yes
+		}
+		add_character_modifier = {
+			name = was_denied_becoming_apprentice_of_@FROM
+			months = 12
+			hidden = yes
+		}
+	}
 }

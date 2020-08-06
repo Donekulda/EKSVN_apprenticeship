@@ -8,17 +8,24 @@ targeted_decisions = {
 		
 		from_potential = {
 			ai = no
+			prisoner = no
 			NOT = { trait = infirm }
 			NOT = { trait = imbecile }
 			NOT = { trait = incapable }
+			NOT = { trait = in_hiding }
 			NOT = { has_character_flag = app_in_training }
+			NOT = { has_character_flag = app_lost_master }
 		}
 		
 		allow = {
+			NOT = { has_character_flag = app_considering_apprentice_@FROM }
 		}
 		
 		effect = {
+			FROM = {set_character_flag = app_choosing_master}
 			
+			ROOT = { character_event = { id = EKAPPQ.002 } }
+			ROOT = { set_character_flag = app_considering_apprentice_@FROM }
 		}
 		
 		ai_acceptance = {
