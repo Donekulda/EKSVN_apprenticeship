@@ -1,0 +1,30 @@
+targeted_decisions = {
+
+	become_apprentice = {
+		only_playable = yes
+	
+		filter = realm
+		ai_target_filter = none
+		
+		from_potential = {
+			ai = no
+			NOT = { trait = infirm }
+			NOT = { trait = imbecile }
+			NOT = { trait = incapable }
+			NOT = { has_character_flag = app_in_training }
+		}
+		
+		allow = {
+		}
+		
+		effect = {
+			
+		}
+		
+		ai_acceptance = {
+			yes_treshold = 35
+			
+		}
+	}
+	
+}

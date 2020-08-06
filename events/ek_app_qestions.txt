@@ -1,0 +1,8 @@
+#Elder Kings Apprenticeship Questions
+namespace = EKAPPQ
+
+character_event = {
+	id = EKAPPQ.001
+	desc = EVTDESC_EKAPPQ_001
+	
+}
